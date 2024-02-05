@@ -1,0 +1,7 @@
+overwrite: true
+schema: https://arma3.multithefranky.com/graphql
+generates:
+  src/graphql/__generated__/schema.ts:
+    plugins:
+      - typescript
+      - typescript-operations
