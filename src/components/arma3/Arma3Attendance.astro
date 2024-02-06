@@ -1,0 +1,17 @@
+---
+import { QUERY_GET_ARMA3_ATTENDANCE } from "@graphql/schemas";
+
+const { data, loading } = await QUERY_GET_ARMA3_ATTENDANCE({
+  date: "2020-01-01",
+});
+---
+
+<>
+  <h2>data</h2>
+  {
+    !loading &&
+      data.getArma3Attendance.attendance.map((attendance) => (
+        <pre>{JSON.stringify(attendance, null, 2)}</pre>
+      ))
+  }
+</>
