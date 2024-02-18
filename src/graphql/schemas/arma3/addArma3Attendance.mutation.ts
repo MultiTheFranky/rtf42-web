@@ -1,5 +1,5 @@
 import { gql } from "graphql-tag";
-import client from "../../../api/apollo-client";
+import { getClient } from "../../apollo-client";
 import type { Arma3Attendance, Arma3AttendanceInput } from "../../__generated__/schema";
 
 export const ADD_ARMA3_ATTENDANCE = gql`
@@ -19,7 +19,7 @@ type AddArma3AttendanceResponse = {
 }
 
 export const MUTATION_ADD_ARMA3_ATTENDANCE = async (input: Arma3AttendanceInput) => {
-    return await client.mutate<AddArma3AttendanceResponse>({
+    return getClient().mutate<AddArma3AttendanceResponse>({
         mutation: ADD_ARMA3_ATTENDANCE,
         variables: {
             input
