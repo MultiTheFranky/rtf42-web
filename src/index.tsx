@@ -2,23 +2,33 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './theme/style.scss';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ApolloProvider } from '@apollo/client';
-import App from './App';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import reportWebVitals from './reportWebVitals';
-import { getClient } from './graphql/apollo-client';
+import { routes } from './routes';
+import { AppwriteWrapper } from './wrappers/Appwrite';
+import { theme } from './theme';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={getClient()}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-      </Routes>
+    <AppwriteWrapper>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Routes>
+              {routes.map((route) => (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.component}
+                />
+              ))}
+            </Routes>
+        </ThemeProvider>
       </BrowserRouter>
-    </ApolloProvider>
+    </AppwriteWrapper>
   </React.StrictMode>
 );
 
