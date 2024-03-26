@@ -1,5 +1,5 @@
 import { Account, Client } from 'appwrite'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { AppwriteContext, User } from '@/contexts/appwrite'
 
 type UserWrapperProps = {
@@ -9,6 +9,12 @@ type UserWrapperProps = {
 export const AppwriteWrapper = ({
     children,
 }: UserWrapperProps): JSX.Element => {
+    if (!import.meta.env.VITE_APPWRITE_ENDPOINT) {
+        throw new Error('VITE_APPWRITE_ENDPOINT is not set')
+    }
+    if (!import.meta.env.VITE_APPWRITE_PROJECT) {
+        throw new Error('VITE_APPWRITE_PROJECT is not set')
+    }
     const client = new Client()
         .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
         .setProject(import.meta.env.VITE_APPWRITE_PROJECT)
@@ -24,8 +30,12 @@ export const AppwriteWrapper = ({
         localStorage.setItem('user', JSON.stringify(user))
     }
     const [user, setUser] = useState<User | null>(getUserFromLocalStorage())
-    const writeUser = (userValue: User) => {
-        writeUserToLocalStorage(userValue)
+    const writeUser = (userValue: User | null) => {
+        if (userValue === null) {
+            localStorage.removeItem('user')
+        } else {
+            writeUserToLocalStorage(userValue)
+        }
         setUser(userValue)
     }
     return (

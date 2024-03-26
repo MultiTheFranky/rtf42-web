@@ -1,8 +1,7 @@
 import {
     BarChart,
     ChevronLeft,
-    Dashboard,
-    Layers,
+    Dashboard as DashboardIcon,
     Map,
     Menu,
     NotificationImportant,
@@ -21,11 +20,15 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    Tooltip,
 } from '@mui/material'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import MuiDrawer from '@mui/material/Drawer'
 import React from 'react'
 import { DarkModeToggle } from '@/components/DarkModeToggle'
+import { Dashboard } from '@/tabs/Dashboard'
+import { Users } from '@/tabs/Players'
+import { LogoutButton } from '@/components/LogoutButton'
 
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean
@@ -85,14 +88,14 @@ type MenuItem = {
 
 export const menuItems: MenuItem[] = [
     {
-        icon: <Dashboard />,
+        icon: <DashboardIcon />,
         text: 'Dashboard',
-        element: <div>Dashboard</div>,
+        element: <Dashboard />,
     },
     {
         icon: <People />,
-        text: 'Users',
-        element: <div>Users</div>,
+        text: 'Players',
+        element: <Users />,
     },
     {
         icon: <Map />,
@@ -111,19 +114,21 @@ export const mainListItems = (
 ) => (
     <div>
         {menuItems.map(item => (
-            <ListItemButton
-                key={item.text}
-                onClick={() => setSelectedElement(item)}
-            >
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
-            </ListItemButton>
+            <Tooltip title={item.text} key={item.text} placement="right">
+                <ListItemButton
+                    key={item.text}
+                    onClick={() => setSelectedElement(item)}
+                >
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.text} />
+                </ListItemButton>
+            </Tooltip>
         ))}
     </div>
 )
 
 export function Home(): React.ReactElement {
-    const [open, setOpen] = React.useState(true)
+    const [open, setOpen] = React.useState(false)
     const toggleDrawer = () => {
         setOpen(!open)
     }
@@ -159,12 +164,8 @@ export function Home(): React.ReactElement {
                     >
                         {selectedElement.text}
                     </Typography>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <NotificationImportant />
-                        </Badge>
-                    </IconButton>
                     <DarkModeToggle />
+                    <LogoutButton />
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>

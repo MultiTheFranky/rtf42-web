@@ -7,24 +7,27 @@ import reportWebVitals from '@/reportWebVitals'
 import { routes } from '@/routes'
 import { AppwriteWrapper } from '@/wrappers/appwrite'
 import { DarkModeWrapper } from './wrappers/darkmode'
+import { ErrorWrapper } from './wrappers/error'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
     <React.StrictMode>
         <AppwriteWrapper>
             <DarkModeWrapper>
-                <BrowserRouter>
-                    <CssBaseline />
-                    <Routes>
-                        {routes.map(route => (
-                            <Route
-                                key={route.path}
-                                path={route.path}
-                                element={route.component}
-                            />
-                        ))}
-                    </Routes>
-                </BrowserRouter>
+                <ErrorWrapper>
+                    <BrowserRouter>
+                        <CssBaseline />
+                        <Routes>
+                            {routes.map(route => (
+                                <Route
+                                    key={route.path}
+                                    path={route.path}
+                                    element={route.component}
+                                />
+                            ))}
+                        </Routes>
+                    </BrowserRouter>
+                </ErrorWrapper>
             </DarkModeWrapper>
         </AppwriteWrapper>
     </React.StrictMode>,

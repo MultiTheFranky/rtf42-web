@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -13,9 +12,8 @@ import Snackbar from '@mui/material/Snackbar'
 import { Alert, Paper } from '@mui/material'
 import { useAppwriteContext } from '@/hooks/appwrite'
 import { Layout } from '@/components/Layout'
-import logo from '@/assets/images/logo.png'
 
-export function SignIn() {
+export function Login() {
     const { account, user, setUser } = useAppwriteContext()
     const [error, setError] = React.useState<string | null>(null)
     const navigate = useNavigate()

@@ -11,7 +11,7 @@ interface AppwriteContext {
     client: Client
     account: Account
     user: User | null
-    setUser: (user: User) => void
+    setUser: (user: User | null) => void
 }
 
 export const AppwriteContext = createContext<AppwriteContext | undefined>(

@@ -11,7 +11,7 @@ export const IsLoggedInWrapper = ({ children }: IsLoggedInWrapperProps) => {
     const navigate = useNavigate()
     useEffect(() => {
         if (!user) {
-            navigate('/sign-in')
+            navigate('/login')
         }
     }, [navigate, user])
 

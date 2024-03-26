@@ -1,5 +1,5 @@
 import React from 'react'
-import { Home, SignIn } from '@/pages'
+import { Home, Login } from '@/pages'
 import { IsLoggedInWrapper } from '@/wrappers/isLoggedIn'
 
 export const routes = [
@@ -13,8 +13,8 @@ export const routes = [
         exact: true,
     },
     {
-        path: '/sign-in',
-        component: <SignIn />,
+        path: '/login',
+        component: <Login />,
         exact: true,
     },
 ]
