@@ -10,7 +10,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
-        }
+        },
     },
     test: {
         globals: true,
@@ -22,6 +22,6 @@ export default defineConfig({
             reporter: ['text', 'json', 'html'],
             include: ['src/**/*'],
             exclude: [],
-        }
+        },
     },
 })

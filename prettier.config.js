@@ -1,4 +1,10 @@
-export const singleQuote = true;
-export const trailingComma = 'all';
-export const arrowParens = 'avoid';
-export const parser = "typescript";
+const config = {
+    trailingComma: "all",
+    tabWidth: 4,
+    semi: false,
+    singleQuote: true,
+    arrowParens: "avoid",
+    parser: "typescript",
+};
+
+module.exports = config;

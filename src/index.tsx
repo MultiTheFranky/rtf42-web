@@ -1,38 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './theme/style.scss';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import reportWebVitals from './reportWebVitals';
-import { routes } from './routes';
-import { AppwriteWrapper } from './wrappers/Appwrite';
-import { theme } from './theme';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import '@/theme/style.scss'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { CssBaseline } from '@mui/material'
+import reportWebVitals from '@/reportWebVitals'
+import { routes } from '@/routes'
+import { AppwriteWrapper } from '@/wrappers/appwrite'
+import { DarkModeWrapper } from './wrappers/darkmode'
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-  <React.StrictMode>
-    <AppwriteWrapper>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Routes>
-              {routes.map((route) => (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={route.component}
-                />
-              ))}
-            </Routes>
-        </ThemeProvider>
-      </BrowserRouter>
-    </AppwriteWrapper>
-  </React.StrictMode>
-);
+    <React.StrictMode>
+        <AppwriteWrapper>
+            <DarkModeWrapper>
+                <BrowserRouter>
+                    <CssBaseline />
+                    <Routes>
+                        {routes.map(route => (
+                            <Route
+                                key={route.path}
+                                path={route.path}
+                                element={route.component}
+                            />
+                        ))}
+                    </Routes>
+                </BrowserRouter>
+            </DarkModeWrapper>
+        </AppwriteWrapper>
+    </React.StrictMode>,
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()

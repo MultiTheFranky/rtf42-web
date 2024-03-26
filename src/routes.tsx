@@ -1,21 +1,20 @@
-import React from 'react';
-import { Home, SignIn } from "@/pages";
-import { IsLoggedInWrapper } from './wrappers/IsLoggedIn';
-
+import React from 'react'
+import { Home, SignIn } from '@/pages'
+import { IsLoggedInWrapper } from '@/wrappers/isLoggedIn'
 
 export const routes = [
     {
         path: '/',
-        component:
+        component: (
             <IsLoggedInWrapper>
                 <Home />
-            </IsLoggedInWrapper>,
-        exact: true
+            </IsLoggedInWrapper>
+        ),
+        exact: true,
     },
     {
         path: '/sign-in',
-        component:
-            <SignIn />,
-        exact: true
-    }
-    ];
+        component: <SignIn />,
+        exact: true,
+    },
+]

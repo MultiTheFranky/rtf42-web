@@ -1,2 +1,2 @@
-export * from "./home"
-export * from "./sign-in"
+export * from '@/pages/home'
+export * from '@/pages/sign-in'
